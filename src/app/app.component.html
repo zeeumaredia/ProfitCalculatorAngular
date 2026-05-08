@@ -1,0 +1,33 @@
+<!-- ── DACHSER Header ──────────────────────────────────────────────────────── -->
+<header class="dachser-header">
+  <div class="header-brand">
+    <span class="header-logo">DACHSER</span>
+    <span class="header-sep">|</span>
+    <span class="header-title">Profit Calculator</span>
+  </div>
+</header>
+
+<!-- ── Layout: sidebar + main ────────────────────────────────────────────── -->
+<div class="app-layout">
+
+  <nav class="app-sidebar">
+    <ul class="sidebar-nav">
+      <li>
+        <a
+          class="sidebar-link"
+          routerLink="/shipments"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <span class="sidebar-icon" aria-hidden="true">🚚</span>
+          Calculate Profit
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <main class="app-main">
+    <router-outlet />
+  </main>
+
+</div>

@@ -1,0 +1,71 @@
+<div class="page-wrapper">
+  <div class="page-header">
+    <div class="page-title-group">
+      <h2 class="page-title">Profit Summary</h2>
+      @if (!loading) {
+        <span class="count-badge">{{ totalCount }} shipment(s)</span>
+      }
+    </div>
+    <button mat-stroked-button (click)="loadShipments()" [disabled]="loading">
+      <span [class.spinning]="loading">↻</span>
+      Refresh
+    </button>
+  </div>
+
+  @if (errorMessage) {
+    <div class="alert alert-danger" role="alert">{{ errorMessage }}</div>
+  }
+
+  @if (loading) {
+    <div class="loading-state">
+      <mat-spinner diameter="40"></mat-spinner>
+    </div>
+  } @else {
+    <div class="table-card">
+      @if (shipments.length === 0) {
+        <p class="no-data">No shipments found.</p>
+      } @else {
+        <table mat-table [dataSource]="shipments" class="w-100">
+
+          <ng-container matColumnDef="shipmentRef">
+            <th mat-header-cell *matHeaderCellDef>Reference</th>
+            <td mat-cell *matCellDef="let row" class="ref-cell">{{ row.shipmentRef }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="totalIncome">
+            <th mat-header-cell *matHeaderCellDef class="cell-right">Income (€)</th>
+            <td mat-cell *matCellDef="let row" class="cell-right">{{ row.totalIncome | number:'1.2-2' }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="totalCosts">
+            <th mat-header-cell *matHeaderCellDef class="cell-right">Costs (€)</th>
+            <td mat-cell *matCellDef="let row" class="cell-right">{{ row.totalCosts | number:'1.2-2' }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="profitOrLoss">
+            <th mat-header-cell *matHeaderCellDef class="cell-right">Profit / Loss (€)</th>
+            <td mat-cell *matCellDef="let row"
+                class="cell-right profit-loss-cell"
+                [class.is-profit]="row.profitOrLoss >= 0"
+                [class.is-loss]="row.profitOrLoss < 0">
+              {{ row.profitOrLoss | number:'1.2-2' }}
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+
+        <mat-paginator
+          [length]="totalCount"
+          [pageSize]="pageSize"
+          [pageIndex]="pageIndex"
+          [pageSizeOptions]="[5, 10, 20]"
+          (page)="onPage($event)"
+          aria-label="Select page">
+        </mat-paginator>
+      }
+    </div>
+  }
+</div>

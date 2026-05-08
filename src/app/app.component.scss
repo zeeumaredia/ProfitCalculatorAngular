@@ -1,0 +1,96 @@
+// ── Header ────────────────────────────────────────────────────────────────────
+.dachser-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  height: var(--header-height);
+  background-color: var(--dachser-yellow);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header-logo {
+  font-weight: 900;
+  font-size: 1.2rem;
+  letter-spacing: 0.06em;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.header-sep {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 1.2rem;
+}
+
+.header-title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+// ── Layout ────────────────────────────────────────────────────────────────────
+.app-layout {
+  display: flex;
+  height: calc(100vh - var(--header-height));
+  overflow: hidden;
+}
+
+// ── Sidebar ───────────────────────────────────────────────────────────────────
+.app-sidebar {
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
+  height: 100%;
+  background-color: var(--dachser-navy);
+  overflow-y: auto;
+  padding-top: 0.75rem;
+}
+
+.sidebar-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1.25rem;
+  color: rgba(255, 255, 255, 0.78);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    background-color: var(--dachser-navy-light);
+    color: #fff;
+  }
+
+  &.active {
+    background-color: var(--dachser-yellow);
+    color: #fff;
+    font-weight: 700;
+  }
+}
+
+.sidebar-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+// ── Main content ──────────────────────────────────────────────────────────────
+.app-main {
+  flex: 1;
+  overflow-y: auto;
+  background-color: #f5f5f5;
+}

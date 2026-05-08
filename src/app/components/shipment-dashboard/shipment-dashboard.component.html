@@ -1,0 +1,13 @@
+<div class="dashboard-layout">
+
+  <!-- ── Top panel: Create Shipment form ───────────────────────────────────── -->
+  <div class="dashboard-panel dashboard-panel--form">
+    <app-create-shipment (shipmentCreated)="onShipmentCreated()"></app-create-shipment>
+  </div>
+
+  <!-- ── Bottom panel: Profit Summary table ────────────────────────────────── -->
+  <div class="dashboard-panel dashboard-panel--list">
+    <app-list-shipments [refresh]="refreshCount"></app-list-shipments>
+  </div>
+
+</div>
